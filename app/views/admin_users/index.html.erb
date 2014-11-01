@@ -1,0 +1,32 @@
+<% @page_title = "Admin List" %>
+
+<div class="admins index"> <!-- css convention to track controller action -->
+  <h2>Admin Users</h2>
+
+  <%#= image_tag('plus_sign.png', :size => '11x11', :alt => "+")%>
+  <%= link_to("Main menu", {:controller => 'access', :action => 'index'}, :class => 'action index') %>
+
+  <%= link_to(image_tag('plus_sign.png', :size => '11x11', :alt => "+")+" Add New Admin", {:action => 'new'}, :class => 'action new') %>
+
+  <div><%= pluralize(@users.size, 'admin')%> found</div>
+  <table class="listing" summary="Subject list">
+    <tr class="header">
+      <th>&nbsp;</th>
+      <th>Name</th>
+      <th class="center">Email</th>
+      <th class="center">Username</th>
+    </tr>
+    <% @users.each do |user| %>  <!-- loop thru -->
+    <tr class="<%= cycle('odd', 'even')%>">
+      <td><%= user.id %></td>
+      <td><%= user.name %></td>
+      <td class="center"><%= mail_to(user.email) %></td>
+      <td class="center"><%= user.username %></td>
+      <td class="actions">
+        <%= link_to("Edit", {:action => 'edit', :id => user.id}, :class => 'action edit') %>
+        <%= link_to("Delete", {:action => 'delete', :id => user.id}, :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

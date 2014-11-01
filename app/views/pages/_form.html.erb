@@ -1,0 +1,24 @@
+  <%= error_messages_for(@page)%>
+
+	<table summary="Page form fields">
+		<tr>
+			<td><%= f.label(:subject_id, "Subject")%></td>
+			<td><%= f.select(:subject_id, @subjects.map {|s| [s.name, s.id]}) %></td>	
+		</tr>
+		<tr>
+			<td><%= f.label(:page, "Name")%></td>
+			<td><%= f.text_field(:name)%></td>	
+		</tr>
+		<tr>
+			<td><%= f.label(:permalink)%></td>
+			<td><%= f.text_field(:permalink)%></td>	
+		</tr>
+		<tr>
+			<td><%= f.label(:position)%></td>
+			<td><%= f.select(:position, 1..@page_count)%></td>	
+		</tr>
+		<tr>
+			<td><%= f.label(:visible)%></td>
+			<td><%= f.check_box(:visible)%></td>	
+		</tr>
+	</table>
